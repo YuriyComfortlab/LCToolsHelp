@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Лаборатория Комфорта tools</title>
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<link href="css/style.css" type="text/css" rel="stylesheet">
+<link href="css/style_eplan.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../js/hs.js"></script>
+
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<!--#include virtual="ssi/header_.html"-->
+		</header>
+		<aside>
+			<!--#include virtual="ssi/aside_eplan.html"-->
+			<!--#include virtual="ssi/aside_revit.html"-->
+		</aside>
+		<div id="content">
+			<div class="text">
+				<h2 class="textHeader" style="margin-bottom:0">Инструменты систем автоматизации</h2>
+				<h3 class="textHeader" style="margin-top:0; padding-top:0">Создание функциональной схемы автоматизации</h3>
+				<div class="border">
+					<p><span class="textMark">Предупреждение!</span></p>
+					<p>Для позиционных обозначений элементов схем использовать латинские сиволы!</p>
+					<p>Свойства страниц и символов на схеме <span class="textMark">Установка</span> и <span class="textMark">Место установки</span> не должны содержать <span class="textMark">@</span>, он является служебным.</p>
+				</div>
+				<p>Данное расширение строит таблицу сигналов и перечень устройств для схемы автоматизации. 
+				<p>Программа обрабатывает информацию, указанную в символах сигналов, дачтиков и устройств управления, и выводит её в виде двух отчётов:
+				<ul>
+					<li>Таблица сигналов функциональной схемы автоматизации.</li>
+					<li>Перечень устройств функциональной схемы автоматизации.</li>
+				</ul>
+				</p>
+				<p>В проекте может быть несколько схем автоматизации. Каждая отдельная схема создаётся на отдельном месте установки.</p>
+				
+				<h3><span class="textMark">Настройка проекта</span></h3>
+				
+					<p>Перед началом работы требуестя выполнить настройку проекта.</p>
+					<p>Далее следует пошаговое описание настройки проекта для работы программы, если проект уже настроен, то можно <a href="#a01"><span class="textMark">перейти к описанию символов</span></a>, либо <a href="#a02"><span class="textMark">к примеру выполнения схемы</span></a>.</p>
+					<p>В процессе работы со схемой потребуются свойства, имена которым будут присвоены после запуска расширения:</p>
+					<p class="textMark">ЛК tools > Функциональная схема автоматизации</p>
+					<img src="images/eplan/fsa_1.png" class="image" height="108" width="503" alt="Запуск ФСА">
+					<p>Может появиться сообщение об ошибки, но нужные настройки внесены в проект. Проверить можно, зайдя в настройки:</p>
+					<p class="textMark">Параметры > Настройки... Проекты > Имя проекта > Управление > Дополнительные поля > Функция</p>
+					<p>Здесь свойствам <span class="textMark">Пользователь, доп. поле ..</span> должны быть присвоены новые имена.</p>
+					<img src="images/eplan/fsa_2.png" class="image" height="487" width="1035" alt="Запуск ФСА">
+					<p>Для правильной работы расширения схема должна строиться на страницах типа:</p>
+					<p class="textMark">Функциональная схема автоматизации (I) <38></p>
+					<img src="images/eplan/fsa_3.png" class="image" height="468" width="594" alt="Тип страницы">
+					<p>Программа работает только с символами, указанными в списке и на рисунке ниже:</p>
+					<p class="textMark">CL_SPECIAL > Электротехника > Электротехника:&nbsp;специальная&nbsp;функция > Прочее > Прочее,&nbsp;перемен. > ФСА_Номер&nbsp;сигнала</p>
+					<p class="textMark">CL_SPECIAL > Электротехника > Электротехника:&nbsp;специальная&nbsp;функция > Прочее > Прочее,&nbsp;перемен. > ФСА_Устройство&nbsp;(1&nbsp;вывод)</p>
+					<p class="textMark">CL_SPECIAL > Электротехника > Электротехника:&nbsp;специальная&nbsp;функция > Прочее > Прочее,&nbsp;перемен. > ФСА_Устройство&nbsp;(2&nbsp;вывода)</p>
+					<p class="textMark">CL_SPECIAL > Электротехника > Электротехника:&nbsp;специальная&nbsp;функция > Прочее > Прочее,&nbsp;перемен. > ФСА_Устройство&nbsp;управления</p>
+					<img src="images/eplan/fsa_4.png" class="image" height="675" width="747" alt="Библиотека символов">
+					<p>Также надо настроить отображение нужных свойств символов, для чего откройте свойства любого символа (Ctrl+D) и включите конфигуратор свойств.</p>
+					<img src="images/eplan/fsa_5.png" class="image" height="711" width="1064" alt="Конфигуратор свойств">
+					<p>Здесь нажимаем на кнопку создать и выбираем следующие свойства:</p>
+					<ul>
+						<li><span class="textMark">Пользователь доп.&nbsp;поле&nbsp;1 <40201></span> или <span class="textMark">ФСА_Номер&nbsp;сигнала <40201></span></li>
+						<li><span class="textMark">Пользователь доп.&nbsp;поле&nbsp;2 <40202></span> или <span class="textMark">ФСА_Тип&nbsp;сигнала <40202></span></li>
+						<li><span class="textMark">Пользователь доп.&nbsp;поле&nbsp;3 <40203></span> или <span class="textMark">ФСА_Группа <40203></span></li>
+						<li><span class="textMark">Пользователь доп.&nbsp;поле&nbsp;4 <40204></span> или <span class="textMark">ФСА_Устройство&nbsp;управления <40204></span></li>
+						<li><span class="textMark">Пользователь доп.&nbsp;поле&nbsp;5 <40205></span> или <span class="textMark">ФСА_Перечень&nbsp;устройств:&nbsp;Тип <40205></span></li>
+						<li><span class="textMark">Пользователь доп.&nbsp;поле&nbsp;6 <40206></span> или <span class="textMark">ФСА_Перечень&nbsp;устройств:&nbsp;Артикул <40206></span></li>
+						<li><span class="textMark">Пользователь доп.&nbsp;поле&nbsp;7 <40207></span> или <span class="textMark">ФСА_Перечень&nbsp;устройств:&nbsp;Наименование <40207></span></li>
+					</ul>
+					<p>После чего кнопками <span class="textMark">переместить вверх / вниз / в начало</span> разместить созданные свойства по порядку в начале списка.</p>
+					<img src="images/eplan/fsa_6.png" class="image" height="331" width="493" alt="Конфигуратор свойств">
+					<p>В результате список свойств должен будет выглядеть как на рисунке ниже. Если свойства будут иметь имена <span class="textMark">Пользователь доп.&nbsp;поле&nbsp;.. <4020..></span>, то надо перезапустить EPLAN.</p>
+					<img src="images/eplan/fsa_7.png" class="image" height="695" width="660" alt="Свойства">
+					<p>Ещё надо загрузить в проект необходимые типы рамок. Для этого надо открыть свойства любой страницы, в списке найти свойство <span class="textMark">Имя рамки <11016></span>, в поле значение развернуть выпадающий список и выбрать строку <span class="textMark">Поиск...</span></p>
+					<img src="images/eplan/fsa_8.png" class="image" height="521" width="596" alt="Настройка рамок">
+					<p>Выбрать рамку <span class="textMark">A3-f-a-00 (первый лист, альб).fn1</span>, которая находится в папке <span class="textMark">\\Server\Dump1\EPLAN\Data\Рамки\ЛК\</span> нажать <span class="textMark">Открыть</span>, <span class="textMark">OK</span>. Повтроить выбор рамки <span class="textMark">A3-n-a-00 (последующий лист, альб).fn1</span>. Если функциональная схема будет выполняться на листе формата A1 или А2, то надо загрузить в проект соответствующие рамки .
+					<img src="images/eplan/fsa_9.png" class="image" height="487" width="791" alt="Выбор рамок">
+					<a name="a01"></a>
+					
+					<p>Все необходимые настройки сделаны, теперь подробнее про символы, которые будут использованы в работе.</p>
+				
+				<a name="a03"></a>
+				
+				<h3><span class="textMark">Описание символов</span></h3>
+				
+				<h4><span class="textMark">ФСА_Номер сигнала</span></h4>
+					<ul>	
+						<li>При размещении можно не заострять внимание на <span class="textMark">ОУ</span>, оно для работы программы не нужно.</li>
+						<li>Обязательно нужно указать <span class="textMark">ФСА_Тип сигнала</span>:</li>
+						<ul>
+							<li><span class="textMark">AI</span> &ndash; аналоговый вход;</li>
+							<li><span class="textMark">AO</span> &ndash; аналоговый выход;</li>
+							<li><span class="textMark">DI</span> &ndash; цифровой вход;</li>
+							<li><span class="textMark">DO</span> &ndash; цифровой выход;</li>
+							<li><span class="textMark">Название интерфейса</span> - текст, отличный от типов сигналов, приведённых выше в этом списке, будет помещён в графу <span class="textMark">Интерфейс</span> таблицы сигналов.</li>
+						</ul>
+						<li>Свойство <span class="textMark">ФСА_Номер сигнала</span> можно не заполнять, это произойдёт автоматически в процессе выполнения программы. Сигналы нумеруются сверху вниз, слева направо.</li>
+						<li>При помощи свойства <span class="textMark">ФСА_Группа</span> можно изменить очерёдность нумерации. Когда счётчик дойдёт до сигнала с заполненным свойством <span class="textMark">ФСА_Группа</span>, он в первую очередь пронумерует сигналы, у которых это свойство имеет то же значение, после чего нумерация будет продолжена.</li>
+						<li>Если сигнал представляет собой силовую линию, коммутируемую через контактор, то свойство <span class="textMark">ФСА_Устройство управления</span> должно быть вида <span class="textMark">KM1</span>, где KM&nbsp;&ndash;&nbsp;написаны на латинице, 1&nbsp;&ndash;&nbsp;порядковый номер устройства. В таблице сигналов будет отрисован контактор, подключённый к дискретному выходу шкафа автоматики, т.е. тип сигнала определился автоматически. Сигналу с контактором может соответствовать устройство управления: символ <span class="textMark">ФСА_Устройство&nbsp;управления</span> с таким же значением свойства <span class="textMark">ФСА_Устройство&nbsp;управления</span>, в данном случае <span class="textMark">KM1</span>. Более подробно можно посмотреть в <a href="#a02"><span class="textMark">примере</span></a>.</li>
+						<li>Стандартное свойство <span class="textMark">Место монтажа (описыв.)</span> определяет силовой шкаф расположения контактора. При пустом значении этого свойства, шкаф управления будет назван ШУС.</li>
+						<li>Свойства <span class="textMark">ФСА_Перечень устройств: Тип</span>, <span class="textMark">ФСА_Перечень устройств: Артикул</span> и <span class="textMark">ФСА_Перечень устройств: Наименование</span> для сигналов значения не имеют.</li>
+					</ul>
+				
+				<h4><span class="textMark">ФСА_Устройство (1 вывод)</span></h4>
+					<ul>	
+						<li>Для устройств имеет значение <span class="textMark">ОУ</span>, оно будет отражено в графе <span class="textMark">Позиция</span> перечня устройств функциональной схемы. Желательно, чтобы оно было уникальным.</li>
+						<li>Значение свойства <span class="textMark">Текст гравировки</span> определяет тип устройства. Если <span class="textMark">Текст гравировки</span> заканчивается на латинские буквы <span class="textMark">E</span> или <span class="textMark">T</span>, то устройство определяется программой как аналоговый датчик, а если на букву <span class="textMark">S</span>, то цифровой датчик. Значение свойства <span class="textMark">ФСА_Тип сигнала</span> в этих случаях задаётся автоматически.</li>
+						<li>Если устройство не используется в качестве датчиков (см. предыдущий пункт), то нужно указать <span class="textMark">ФСА_Тип сигнала</span>:</li>
+						<ul>
+							<li><span class="textMark">AI</span> &ndash; аналоговый вход;</li>
+							<li><span class="textMark">AO</span> &ndash; аналоговый выход;</li>
+							<li><span class="textMark">DI</span> &ndash; цифровой вход;</li>
+							<li><span class="textMark">DO</span> &ndash; цифровой выход;</li>
+							<li><span class="textMark">Название интерфейса</span> - текст, отличный от типов сигналов, приведённых выше в этом списке, будет помещён в графу <span class="textMark">Интерфейс</span> таблицы сигналов.</li>
+						</ul>
+						<li>Про свойства <span class="textMark">ФСА_Номер сигнала</span>, <span class="textMark">ФСА_Группа</span>, <span class="textMark">ФСА_Устройство управления</span> и <span class="textMark">Место монтажа (описыв.)</span> написано выше, в описании символа <span class="textMark">ФСА_Номер сигнала</span></li>
+						<li>Устройсву можно присвоить изделие из базы (свойства символа, закладка <span class="textMark">Изделие</span>). Все изделия функциональной схемы будут сведены в перечень устройств. Если устройство относится к смежному разделу (например двигатель или клапан), но в перечне устройств его отобразить необходимо, то можно задать соответствующие значения свойствам <span class="textMark">ФСА_Перечень устройств: Тип</span>, <span class="textMark">ФСА_Перечень устройств: Артикул</span> и <span class="textMark">ФСА_Перечень устройств: Наименование</span>. При этом должен быть пустым список изделий символа (свойства символа, закладка <span class="textMark">Изделие</span>).</li>
+					</ul>
+				
+				<h4><span class="textMark">ФСА_Устройство (2 вывода)</span></h4>
+					<ul>	
+						<li>Для устройств имеет значение <span class="textMark">ОУ</span>, оно будет отражено в графе <span class="textMark">Позиция</span> перечня устройств функциональной схемы. Желательно, чтобы оно было уникальным.</li>
+						<li>У этого символа нет собственных сигналов ("ножек"), но он имеет 2 вывода устройства, на которые "цепляются" по одному символу <span class="textMark">ФСА_Номер сигнала</span>.</li>
+						<li>Значение свойства <span class="textMark">Текст гравировки</span> определяет тип устройства. Функционал устройства записывается через запятую, например, запись <span class="textMark">PS,TE</span> означает, что устройство является комбинированным датчиком давления (дискретный сигнал) и температуры (аналоговый сигнал). Как и для символа <span class="textMark">ФСА_Устройство (1 вывод)</span> определение типа сигнала (для присоединённых символов <span class="textMark">ФСА_Номер сигнала</span>) происходит по последней латинской букве: <span class="textMark">E</span> или <span class="textMark">T</span>, то устройство определяется программой как аналоговый датчик, а если <span class="textMark">S</span>, то цифровой датчик.</li>
+						<li>Если устройство не используется в качестве датчиков (см. предыдущий пункт), то нужно указать <span class="textMark">ФСА_Тип сигнала</span> в присоединённых выводах:</li>
+						<ul>
+							<li><span class="textMark">AI</span> &ndash; аналоговый вход;</li>
+							<li><span class="textMark">AO</span> &ndash; аналоговый выход;</li>
+							<li><span class="textMark">DI</span> &ndash; цифровой вход;</li>
+							<li><span class="textMark">DO</span> &ndash; цифровой выход;</li>
+							<li><span class="textMark">Название интерфейса</span> - текст, отличный от типов сигналов, приведённых выше в этом списке, будет помещён в графу <span class="textMark">Интерфейс</span> таблицы сигналов.</li>
+						</ul>
+						<li>Про свойства <span class="textMark">ФСА_Номер сигнала</span>, <span class="textMark">ФСА_Группа</span>, <span class="textMark">ФСА_Устройство управления</span> и <span class="textMark">Место монтажа (описыв.)</span> написано выше, в описании символа <span class="textMark">ФСА_Номер сигнала</span>.</li>
+						<li>Устройсву можно присвоить изделие из базы (свойства символа, закладка <span class="textMark">Изделие</span>). Все изделия функциональной схемы будут сведены в перечень устройств. Если устройство относится к смежному разделу (например двигатель или клапан), но в перечне устройств его отобразить необходимо, то можно задать соответствующие значения свойствам <span class="textMark">ФСА_Перечень устройств: Тип</span>, <span class="textMark">ФСА_Перечень устройств: Артикул</span> и <span class="textMark">ФСА_Перечень устройств: Наименование</span>. При этом должен быть пустым список изделий символа (свойства символа, закладка <span class="textMark">Изделие</span>).</li>
+					</ul>
+				
+				<h4><span class="textMark">ФСА_Устройство управления</span></h4>
+					<ul>	
+						<li>Назначение этого символа &ndash; отображение в таблице сигналов элементов управления: кнопок, переключателей, лампочек.</li>
+						<li>Символ является непечатаемым.</li>
+						<li>Для устройств имеет значение <span class="textMark">ОУ</span>, оно определяет тип устройства:</li>
+						<ul>
+							<li><span class="textMark">HL</span> - сигнальная лампа;</li>
+							<li><span class="textMark">SA</span> - переключатель;</li>
+							<li><span class="textMark">SB</span> - кнопка;</li>
+						</ul>
+						<li>Данный символ имеет 4 варианта:</li>
+						<ul>
+							<li><span class="textMark">A</span> &ndash; используется по умолчанию.
+							<li><span class="textMark">B</span> и <span class="textMark">C</span> &ndash; разделяют сигнал в таблице сигналов на 2 или 3 входа соответственно, например, может быть полезно для осуществления переключения режимов работы с помощью переключтателя <span class="textMark">SA</span>.</li>
+							<li><span class="textMark">H</span> &ndash; лампочка, только для визуального отображения на экране, на ход выполнения прграммы никак не влияет.</li>
+						</ul>
+						<li>Если требуется привязать переключатель к контактору, то в свойстве <span class="textMark">ФСА_Устройство&nbsp;управления</span> нужно указать тот же имя контактора, что и у соответствующего символа <span class="textMark">ФСА_Номер сигнала</span> (см. информацию про символ <a href="#a03"><span class="textMark">ФСА_Номер сигнала</span></a> и  <a href="#a02"><span class="textMark">пример</span></a>).</li>
+						<li>Стандартное свойство <span class="textMark">Место монтажа (описыв.)</span> определяет силовой шкаф расположения устройства управления. При пустом значении этого свойства, устройство будет расположено в шкафу автоматики.</li>
+						
+					</ul>
+					
+					<h4><span class="textMark">Обозначение местоположения</span></h4>
+					<p>Сигналы могут быть распределены на несколько шкафов автоматики. По умолчанию все сигналы уходят на шкаф с именем ША. Чтобы определить другой шкаф для группы сигналов или всех сигналов, эти сигналы надо обвести рамкой <span class="textMark">Обозначение местоположения</span>.</p>
+					<img src="images/eplan/fsa_10.png" class="image" height="61" width="481" alt="Обозначение местоположения">
+					<p>Свойство <span class="textMark">Номер установки</span> опреляет название шкафа автоматики. Каждая рамка <span class="textMark">Обозначение местоположения</span> создаёт свой шкаф автоматики в таблице сигналов. Чтобы рамка местоположения не выводилась на печать, ей следует назначить непечатаемый слой <span class="textMark">EPLAN900, Символьная графика.Экранный</span>. Для этого нужно открыть <span class="textMark">Свойства</span> обозначения местоположения, перейти на вкладку <span class="textMark">Формат</span>, и выбрать нужный <span class="textMark">Слой</span> из списка.</p>
+					
+				<a name="a02"></a>
+				
+				<h3><span class="textMark">Пример выполнения функциональной схемы автоматизации</span></h3>
+					<p>Ниже приведён пример, в котором использованы все возможности программы. После выполнения всех шагов и анализа результатов работы многое не понятное ранее должно стать понятным.</p>
+					<p>Разместите на странице символы со свойствами, приведёнными в таблице:</p>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Поз.</br>(ОУ)</th> <th>Имя символа</th> <th>Имя свойства</th> <th>Значение</th> <th>Примечание</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="color_2">
+								<td>1</td>
+								<td>ФСА_Номер сигнала</td>
+								<td class="color_3">Функциональный текст</td>
+								<td class="color_3">Сигнал 1</td>
+								<td class="color_3"></td>
+							</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_4">ФСА_Тип сигнала</td>
+									<td class="color_4">AI</td>
+									<td class="color_4"></td>
+								</tr>
+							<tr class="color_3">
+								<td>2</td>
+								<td>ФСА_Номер сигнала</td>
+								<td>Функциональный текст</td>
+								<td>Сигнал 2</td>
+								<td></td>
+							</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td class="color_4">ФСА_Тип сигнала</td>
+									<td class="color_4">AO</td>
+									<td class="color_4"></td>
+								</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td>ФСА_Группа</td>
+									<td>Гр.1</td>
+									<td></td>
+								</tr>
+							<tr class="color_2">
+								<td>3</td>
+								<td>ФСА_Номер сигнала</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Сигнал 3</td>
+								<td class="color_4"></td>
+							</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_3">ФСА_Устройство управления</td>
+									<td class="color_3">KM1</td>
+									<td class="color_3"></td>
+								</tr>
+							<tr class="color_3">
+								<td>4</td>
+								<td>ФСА_Номер сигнала</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Сигнал 4</td>
+								<td class="color_4"></td>
+							</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td>ФСА_Устройство управления</td>
+									<td>KM2</td>
+									<td></td>
+								</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td class="color_4">ФСА_Группа</td>
+									<td class="color_4">Гр.1</td>
+									<td class="color_4"></td>
+								</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td>Место монтажа (описыв.)</td>
+									<td>ШУС1</td>
+									<td></td>
+								</tr>
+							<tr class="color_2">
+								<td>5</td>
+								<td>ФСА_Номер сигнала</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Сигнал 5</td>
+								<td class="color_4"></td>
+							</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_3">ФСА_Тип сигнала</td>
+									<td class="color_3">Интерфейс 1</td>
+									<td class="color_3"></td>
+								</tr>
+							<tr class="color_3">
+								<td>6</td>
+								<td>ФСА_Устройство (1&nbsp;вывод)</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Сигнал 6</td>
+								<td class="color_4"></td>
+							</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td>Текст гравировки</td>
+									<td>PS</td>
+									<td></td>
+								</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td class="color_4">ФСА_Группа</td>
+									<td class="color_4">Гр.1</td>
+									<td class="color_4"></td>
+								</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td>ФСА_Перечень устройств: Тип</td>
+									<td>Тип устройства 1</td>
+									<td></td>
+								</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td class="color_4">ФСА_Перечень устройств: Артикул</td>
+									<td class="color_4">Номер устройства 1</td>
+									<td class="color_4"></td>
+								</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td>ФСА_Перечень устройств: Наименование</td>
+									<td>Устройство 1</td>
+									<td></td>
+								</tr>
+							<tr class="color_2">
+								<td>7</td>
+								<td>ФСА_Устройство (1&nbsp;вывод)</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Сигнал 7</td>
+								<td class="color_4"></td>
+							</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_3">Текст гравировки</td>
+									<td class="color_3">TT</td>
+									<td class="color_3"></td>
+								</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_4">ФСА_Группа</td>
+									<td class="color_4">Гр.1</td>
+									<td class="color_4"></td>
+								</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_3">ФСА_Перечень устройств: Тип</td>
+									<td class="color_3">Тип устройства 1</td>
+									<td class="color_3"></td>
+								</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_4">ФСА_Перечень устройств: Наименование</td>
+									<td class="color_4">Устройство 1</td>
+									<td class="color_4"></td>
+								</tr>
+							<tr class="color_3">
+								<td>8</td>
+								<td>ФСА_Устройство (1&nbsp;вывод)</td>
+								<td>Функциональный текст</td>
+								<td>Сигнал 8</td>
+								<td></td>
+							</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td class="color_4">Текст гравировки</td>
+									<td class="color_4">TE</td>
+									<td class="color_4"></td>
+								</tr>
+							<tr class="color_2">
+								<td>9</td>
+								<td>ФСА_Устройство (1&nbsp;вывод)</td>
+								<td class="color_3">Функциональный текст</td>
+								<td class="color_3">Сигнал 9</td>
+								<td class="color_3"></td>
+							</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_4">Текст гравировки</td>
+									<td class="color_4">AA</td>
+									<td class="color_4"></td>
+								</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_3">ФСА_Тип сигнала</td>
+									<td class="color_3">Интерфейс 2</td>
+									<td class="color_3"></td>
+								</tr>
+							<tr class="color_3">
+								<td>10</td>
+								<td>ФСА_Устройство (2&nbsp;выводa)</td>
+								<td class="color_4">Текст гравировки</td>
+								<td class="color_4">PS,TE</td>
+								<td class="color_4">к выводам подвести поз. 11, 12</td>
+							</tr>
+							<tr class="color_2">
+								<td>11</td>
+								<td>ФСА_Номер сигнала</td>
+								<td class="color_3">Функциональный текст</td>
+								<td class="color_3">Сигнал 11</td>
+								<td class="color_3">подвести к поз. 10</td>
+							</tr>
+							<tr class="color_3">
+								<td>12</td>
+								<td>ФСА_Номер сигнала</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Сигнал 12</td>
+								<td class="color_4">подвести к поз. 10</td>
+							</tr>
+							<tr class="color_2">
+								<td>13</td>
+								<td>ФСА_Устройство (2&nbsp;выводa)</td>
+								<td class="color_3">Текст гравировки</td>
+								<td class="color_3">BB,CC</td>
+								<td class="color_3">к выводам подвести поз. 14, 15</td>
+							</tr>
+							<tr class="color_3">
+								<td>14</td>
+								<td>ФСА_Номер сигнала</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Сигнал 14</td>
+								<td class="color_4">подвести к поз. 13</td>
+							</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td>ФСА_Тип сигнала</td>
+									<td>DO</td>
+									<td></td>
+								</tr>
+							<tr class="color_2">
+								<td>15</td>
+								<td>ФСА_Номер сигнала</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Сигнал 15</td>
+								<td class="color_4">подвести к поз. 13</td>
+							</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_3">ФСА_Тип сигнала</td>
+									<td class="color_3">Интерфейс 3</td>
+									<td class="color_3"></td>
+								</tr>
+							<tr class="color_3">
+								<td>SA1</td>
+								<td>ФСА_Устройство управления</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Функция 1</td>
+								<td class="color_4"></td>
+							</tr>
+							<tr class="color_2">
+								<td>SA2</td>
+								<td>ФСА_Устройство управления</td>
+								<td class="color_3">Функциональный текст</td>
+								<td class="color_3">Функция 2</td>
+								<td class="color_3">Вариант символа: B</td>
+							</tr>
+								<tr class="color_2">
+									<td></td>
+									<td></td>
+									<td class="color_4">Место монтажа (описыв.)</td>
+									<td class="color_4">ШУС</td>
+									<td class="color_4"></td>
+								</tr>
+							<tr class="color_3">
+								<td>SA3</td>
+								<td>ФСА_Устройство управления</td>
+								<td>Функциональный текст</td>
+								<td>Функция 3</td>
+								<td>Вариант символа: C</td>
+							</tr>
+								<tr class="color_3">
+									<td></td>
+									<td></td>
+									<td class="color_4">ФСА_Устройство управления</td>
+									<td class="color_4">KM2</td>
+									<td class="color_4"></td>
+								</tr>
+							<tr class="color_2">
+								<td>SB1</td>
+								<td>ФСА_Устройство управления</td>
+								<td class="color_3">Функциональный текст</td>
+								<td class="color_3">Функция 4</td>
+								<td class="color_3"></td>
+							</tr>
+							<tr class="color_3">
+								<td>HL1</td>
+								<td>ФСА_Устройство управления</td>
+								<td class="color_4">Функциональный текст</td>
+								<td class="color_4">Функция 5</td>
+								<td class="color_4"></td>
+							</tr>
+						</tbody>
+					</table>
+					<p>Создайте 2 рамки <span class="textMark">Обозначение местоположения</span>, в которые какие-нибудь сигналы и устройства управления. Назовите их <span class="textMark">ША2</span>. В результате должно получиться что-то подобное:</p>
+					<img src="images/eplan/fsa_11.png" class="image" height="665" width="793" alt="Обозначение местоположения">
+					<p>Назначьте устройствам поз. 10 и 13 какие-нибудь изделия (<span class="textMark">Свойства</span> > <span class="textMark">Изделие</span>).</p>
+					<p>Запустите расширение:</p>
+					<p class="textMark">ЛК tools > Функциональная схема автоматизации</p>
+					<p>В результате будет создано 2 листа с таблицей сигналов и перечнем устройств. Все сигналы будут пронумерованы, датчикам присвоены типы сигналов, согласно функциям (тексту гравировки).</p>
+					<img src="images/eplan/fsa_12.png" class="image" height="798" width="671" alt="Обозначение местоположения">
+					<img src="images/eplan/fsa_13.png" class="image" height="216" width="837" alt="Обозначение местоположения">
+			</div>
+		</div>
+		<footer>
+			
+		</footer>
+		<div class="clear"></div>
+	</div>
+</body>
+</html>
