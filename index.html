@@ -42,22 +42,22 @@
 					<p>Далее следует пошаговое описание настройки проекта для работы программы, если проект уже настроен, то можно <a href="#a01"><span class="textMark">перейти к описанию символов</span></a>, либо <a href="#a02"><span class="textMark">к примеру выполнения схемы</span></a>.</p>
 					<p>В процессе работы со схемой потребуются свойства, имена которым будут присвоены после запуска расширения:</p>
 					<p class="textMark">ЛК tools > Функциональная схема автоматизации</p>
-					<img src="images/eplan/fsa_1.png" class="image" height="108" width="503" alt="Запуск ФСА">
+					<img src="images/fsa_1.png" class="image" height="108" width="503" alt="Запуск ФСА">
 					<p>Может появиться сообщение об ошибки, но нужные настройки внесены в проект. Проверить можно, зайдя в настройки:</p>
 					<p class="textMark">Параметры > Настройки... Проекты > Имя проекта > Управление > Дополнительные поля > Функция</p>
 					<p>Здесь свойствам <span class="textMark">Пользователь, доп. поле ..</span> должны быть присвоены новые имена.</p>
-					<img src="images/eplan/fsa_2.png" class="image" height="487" width="1035" alt="Запуск ФСА">
+					<img src="images/fsa_2.png" class="image" height="487" width="1035" alt="Запуск ФСА">
 					<p>Для правильной работы расширения схема должна строиться на страницах типа:</p>
 					<p class="textMark">Функциональная схема автоматизации (I) <38></p>
-					<img src="images/eplan/fsa_3.png" class="image" height="468" width="594" alt="Тип страницы">
+					<img src="images/fsa_3.png" class="image" height="468" width="594" alt="Тип страницы">
 					<p>Программа работает только с символами, указанными в списке и на рисунке ниже:</p>
 					<p class="textMark">CL_SPECIAL > Электротехника > Электротехника:&nbsp;специальная&nbsp;функция > Прочее > Прочее,&nbsp;перемен. > ФСА_Номер&nbsp;сигнала</p>
 					<p class="textMark">CL_SPECIAL > Электротехника > Электротехника:&nbsp;специальная&nbsp;функция > Прочее > Прочее,&nbsp;перемен. > ФСА_Устройство&nbsp;(1&nbsp;вывод)</p>
 					<p class="textMark">CL_SPECIAL > Электротехника > Электротехника:&nbsp;специальная&nbsp;функция > Прочее > Прочее,&nbsp;перемен. > ФСА_Устройство&nbsp;(2&nbsp;вывода)</p>
 					<p class="textMark">CL_SPECIAL > Электротехника > Электротехника:&nbsp;специальная&nbsp;функция > Прочее > Прочее,&nbsp;перемен. > ФСА_Устройство&nbsp;управления</p>
-					<img src="images/eplan/fsa_4.png" class="image" height="675" width="747" alt="Библиотека символов">
+					<img src="images/fsa_4.png" class="image" height="675" width="747" alt="Библиотека символов">
 					<p>Также надо настроить отображение нужных свойств символов, для чего откройте свойства любого символа (Ctrl+D) и включите конфигуратор свойств.</p>
-					<img src="images/eplan/fsa_5.png" class="image" height="711" width="1064" alt="Конфигуратор свойств">
+					<img src="images/fsa_5.png" class="image" height="711" width="1064" alt="Конфигуратор свойств">
 					<p>Здесь нажимаем на кнопку создать и выбираем следующие свойства:</p>
 					<ul>
 						<li><span class="textMark">Пользователь доп.&nbsp;поле&nbsp;1 <40201></span> или <span class="textMark">ФСА_Номер&nbsp;сигнала <40201></span></li>
@@ -69,13 +69,13 @@
 						<li><span class="textMark">Пользователь доп.&nbsp;поле&nbsp;7 <40207></span> или <span class="textMark">ФСА_Перечень&nbsp;устройств:&nbsp;Наименование <40207></span></li>
 					</ul>
 					<p>После чего кнопками <span class="textMark">переместить вверх / вниз / в начало</span> разместить созданные свойства по порядку в начале списка.</p>
-					<img src="images/eplan/fsa_6.png" class="image" height="331" width="493" alt="Конфигуратор свойств">
+					<img src="images/fsa_6.png" class="image" height="331" width="493" alt="Конфигуратор свойств">
 					<p>В результате список свойств должен будет выглядеть как на рисунке ниже. Если свойства будут иметь имена <span class="textMark">Пользователь доп.&nbsp;поле&nbsp;.. <4020..></span>, то надо перезапустить EPLAN.</p>
-					<img src="images/eplan/fsa_7.png" class="image" height="695" width="660" alt="Свойства">
+					<img src="images/fsa_7.png" class="image" height="695" width="660" alt="Свойства">
 					<p>Ещё надо загрузить в проект необходимые типы рамок. Для этого надо открыть свойства любой страницы, в списке найти свойство <span class="textMark">Имя рамки <11016></span>, в поле значение развернуть выпадающий список и выбрать строку <span class="textMark">Поиск...</span></p>
-					<img src="images/eplan/fsa_8.png" class="image" height="521" width="596" alt="Настройка рамок">
+					<img src="images/fsa_8.png" class="image" height="521" width="596" alt="Настройка рамок">
 					<p>Выбрать рамку <span class="textMark">A3-f-a-00 (первый лист, альб).fn1</span>, которая находится в папке <span class="textMark">\\Server\Dump1\EPLAN\Data\Рамки\ЛК\</span> нажать <span class="textMark">Открыть</span>, <span class="textMark">OK</span>. Повтроить выбор рамки <span class="textMark">A3-n-a-00 (последующий лист, альб).fn1</span>. Если функциональная схема будет выполняться на листе формата A1 или А2, то надо загрузить в проект соответствующие рамки .
-					<img src="images/eplan/fsa_9.png" class="image" height="487" width="791" alt="Выбор рамок">
+					<img src="images/fsa_9.png" class="image" height="487" width="791" alt="Выбор рамок">
 					<a name="a01"></a>
 					
 					<p>Все необходимые настройки сделаны, теперь подробнее про символы, которые будут использованы в работе.</p>
@@ -158,7 +158,7 @@
 					
 					<h4><span class="textMark">Обозначение местоположения</span></h4>
 					<p>Сигналы могут быть распределены на несколько шкафов автоматики. По умолчанию все сигналы уходят на шкаф с именем ША. Чтобы определить другой шкаф для группы сигналов или всех сигналов, эти сигналы надо обвести рамкой <span class="textMark">Обозначение местоположения</span>.</p>
-					<img src="images/eplan/fsa_10.png" class="image" height="61" width="481" alt="Обозначение местоположения">
+					<img src="images/fsa_10.png" class="image" height="61" width="481" alt="Обозначение местоположения">
 					<p>Свойство <span class="textMark">Номер установки</span> опреляет название шкафа автоматики. Каждая рамка <span class="textMark">Обозначение местоположения</span> создаёт свой шкаф автоматики в таблице сигналов. Чтобы рамка местоположения не выводилась на печать, ей следует назначить непечатаемый слой <span class="textMark">EPLAN900, Символьная графика.Экранный</span>. Для этого нужно открыть <span class="textMark">Свойства</span> обозначения местоположения, перейти на вкладку <span class="textMark">Формат</span>, и выбрать нужный <span class="textMark">Слой</span> из списка.</p>
 					
 				<a name="a02"></a>
@@ -484,13 +484,13 @@
 						</tbody>
 					</table>
 					<p>Создайте 2 рамки <span class="textMark">Обозначение местоположения</span>, в которые какие-нибудь сигналы и устройства управления. Назовите их <span class="textMark">ША2</span>. В результате должно получиться что-то подобное:</p>
-					<img src="images/eplan/fsa_11.png" class="image" height="665" width="793" alt="Обозначение местоположения">
+					<img src="images/fsa_11.png" class="image" height="665" width="793" alt="Обозначение местоположения">
 					<p>Назначьте устройствам поз. 10 и 13 какие-нибудь изделия (<span class="textMark">Свойства</span> > <span class="textMark">Изделие</span>).</p>
 					<p>Запустите расширение:</p>
 					<p class="textMark">ЛК tools > Функциональная схема автоматизации</p>
 					<p>В результате будет создано 2 листа с таблицей сигналов и перечнем устройств. Все сигналы будут пронумерованы, датчикам присвоены типы сигналов, согласно функциям (тексту гравировки).</p>
-					<img src="images/eplan/fsa_12.png" class="image" height="798" width="671" alt="Обозначение местоположения">
-					<img src="images/eplan/fsa_13.png" class="image" height="216" width="837" alt="Обозначение местоположения">
+					<img src="images/fsa_12.png" class="image" height="798" width="671" alt="Обозначение местоположения">
+					<img src="images/fsa_13.png" class="image" height="216" width="837" alt="Обозначение местоположения">
 			</div>
 		</div>
 		<footer>
